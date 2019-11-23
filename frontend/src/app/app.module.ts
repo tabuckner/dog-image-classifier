@@ -12,6 +12,7 @@ import { ClarityModule } from '@clr/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { ImagesModule } from './images/images.module';
 
 const appRoutes: Routes = [
   { path: 'images', component: ImagesComponent },
@@ -21,7 +22,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ImagesComponent,
     HomeComponent
   ],
   imports: [
@@ -33,7 +33,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     ClarityModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ImagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
