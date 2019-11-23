@@ -1,31 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
   styleUrls: ['./images.component.css']
 })
-export class ImagesComponent implements OnInit {
-  clickMessage = null;
-  clickMessageTimeout = null;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class ImagesComponent {
+  clickMessage = undefined;
+  clickMessageTimeout = undefined;
 
   onClickBoy() {
+    // TODO: Implement logic.
     clearTimeout(this.clickMessageTimeout);
-    this.clickMessage = "You clicked Boy.";
+    this.clickMessage = 'You clicked Boy.';
 
-    this.clickMessageTimeout = setTimeout(() => { this.clickMessage = null }, 2000);
+    this.resetClickMessageTimeout();
   }
 
   onClickGirl() {
+    // TODO: Implement logic.
     clearTimeout(this.clickMessageTimeout);
-    this.clickMessage = "You clicked Girl.";
+    this.clickMessage = 'You clicked Girl.';
 
-    this.clickMessageTimeout = setTimeout(() => { this.clickMessage = null }, 2000);
+    this.resetClickMessageTimeout();
+  }
+
+  public get shouldShowClickMessage(): boolean {
+    return this.clickMessage === undefined;
+  }
+
+  private resetClickMessageTimeout() {
+    this.clickMessageTimeout = setTimeout(() => {
+      this.clickMessage = undefined;
+    }, 2000);
   }
 
 }
