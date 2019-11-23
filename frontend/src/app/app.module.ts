@@ -8,6 +8,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ImagesComponent } from './images/images.component';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ImagesComponent } from './images/images.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ClarityModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
