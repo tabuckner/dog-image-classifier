@@ -23,6 +23,10 @@ export class FirebaseDocument implements FirebaseDocumentDto {
     this.votes = this.initialVotes;
   }
 
+  public static serialize(firebaseDocument: FirebaseDocument): object {
+    return JSON.parse(JSON.stringify(firebaseDocument));
+  }
+
   private get initialVotes(): FirebaseDocumentDtoVotes {
     return {
       female: 0,

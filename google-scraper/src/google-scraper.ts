@@ -3,11 +3,16 @@ import { ImageMetadataModel } from 'models/image-metadata.model';
 const Scraper = require('images-scraper');
 
 export class GoogleScraper {
-  private static readonly categoryImageCount = 20;
+  private static readonly defaultCategoryImageCount = 100;
+  private static categoryImageCount: number;
 
   public static async scrape(
-    ...queries: string[]
+    queries: string[],
+    overrideCount?: number
   ): Promise<GoogleScraperResultsModel> {
+    this.categoryImageCount = overrideCount
+      ? overrideCount
+      : this.defaultCategoryImageCount;
     const results: GoogleScraperResultsModel = {};
 
     for (const query of queries) {
