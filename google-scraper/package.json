@@ -1,0 +1,43 @@
+{
+  "name": "google-scraper",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Taylor Buckner",
+  "main": "dist/index.js",
+  "module": "dist/google-scraper.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"tsdx watch\" \"nodemon ./dist\"",
+    "start:watch": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint --fix"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "concurrently": "^5.0.0",
+    "husky": "^3.1.0",
+    "nodemon": "^2.0.1",
+    "tsdx": "^0.11.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "images-scraper": "^3.0.1"
+  }
+}
