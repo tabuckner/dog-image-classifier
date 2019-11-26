@@ -1,10 +1,10 @@
 {
-  "name": "google-scraper",
+  "name": "image-scraper",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Taylor Buckner",
   "main": "dist/index.js",
-  "module": "dist/google-scraper.esm.js",
+  "module": "dist/image-scraper.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -12,7 +12,7 @@
   "scripts": {
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"tsdx watch\" \"nodemon ./dist\"",
     "start:watch": "tsdx watch",
-    "start:prod": "node ./dist/index.js",
+    "start:prod": "yarn build && node ./dist/index.js",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint"
