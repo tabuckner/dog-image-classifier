@@ -10,16 +10,15 @@ export class GoogleScraper {
     queries: string[],
     overrideCount?: number
   ): Promise<GoogleScraperResultsModel> {
-    this.categoryImageCount = overrideCount
-      ? overrideCount
-      : this.defaultCategoryImageCount;
+    this.categoryImageCount = overrideCount || this.defaultCategoryImageCount;
     const results: GoogleScraperResultsModel = {};
 
     for (const query of queries) {
       results[query] = [];
 
-      const scraper = GoogleScraper['getScraper'](query);
+      const scraper = GoogleScraper.getScraper(query);
       const imagesMetaData: ImageMetadataModel[] = await scraper.start();
+      console.log(`Obtained ${imagesMetaData.length} results for ${query}`);
       results[query] = imagesMetaData.map(image => {
         return {
           url: image.url,
@@ -33,6 +32,9 @@ export class GoogleScraper {
   }
 
   private static getScraper(query: string): any {
+    console.log(
+      `Creating scraper targeting ${query} for ${GoogleScraper.categoryImageCount} results.`
+    );
     // TODO: Create types for `images-scraper`.
     return new Scraper.Google({
       keyword: query,

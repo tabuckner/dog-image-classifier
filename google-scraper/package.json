@@ -12,6 +12,7 @@
   "scripts": {
     "start": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"tsdx watch\" \"nodemon ./dist\"",
     "start:watch": "tsdx watch",
+    "start:prod": "node ./dist/index.js",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint"
