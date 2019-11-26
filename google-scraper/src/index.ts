@@ -1,11 +1,11 @@
-import { GoogleScraper } from './google-scraper';
+import { BingScraper } from './bing-scraper';
 import { FirebaseDocument } from './firebase-document';
 import { UrlsCollection } from './urls-collection';
 
 const queries = ['male dog', 'female dog'];
 const collection = UrlsCollection.get();
 
-GoogleScraper.scrape(queries, 1000).then(results => {
+BingScraper.scrape(queries, 1000).then(results => {
   console.log('Completed the Scrape...');
   for (const googleQuery in results) {
     const segment = results[googleQuery];

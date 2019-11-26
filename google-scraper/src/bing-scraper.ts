@@ -1,8 +1,8 @@
 import { GoogleScraperResultsModel } from 'models/google-scraper-results.model';
 import { ImageMetadataModel } from 'models/image-metadata.model';
-const Scraper = require('images-scraper');
+const Scraper = require('bing-image-scraper');
 
-export class GoogleScraper {
+export class BingScraper {
   private static readonly defaultCategoryImageCount = 100;
   private static categoryImageCount: number;
 
@@ -16,9 +16,14 @@ export class GoogleScraper {
     for (const query of queries) {
       results[query] = [];
 
-      const scraper = GoogleScraper.getScraper(query);
-      const imagesMetaData: ImageMetadataModel[] = await scraper.start();
+      const scraper = new Scraper();
+      const imagesMetaData: ImageMetadataModel[] = await scraper.list({
+        keyword: query,
+        num: BingScraper.categoryImageCount,
+      });
+
       console.log(`Obtained ${imagesMetaData.length} results for ${query}`);
+
       results[query] = imagesMetaData.map(image => {
         return {
           url: image.url,
@@ -29,24 +34,5 @@ export class GoogleScraper {
     }
 
     return results;
-  }
-
-  private static getScraper(query: string): any {
-    console.log(
-      `Creating scraper targeting ${query} for ${GoogleScraper.categoryImageCount} results.`
-    );
-    // TODO: Create types for `images-scraper`.
-    return new Scraper.Google({
-      keyword: query,
-      limit: GoogleScraper.categoryImageCount,
-      puppeteer: {
-        headless: false,
-      },
-      advanced: {
-        imgType: 'photo', // options: clipart, face, lineart, news, photo
-        resolution: 'm', // options: l(arge), m(edium), i(cons), etc.
-        color: undefined, // options: color, gray, trans
-      },
-    });
   }
 }
